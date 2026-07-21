@@ -1,0 +1,10 @@
+# Exclude local dependency and build artifacts
+node_modules
+**/node_modules
+.next
+**/.next
+.turbo
+dist
+.vscode
+.git
+*.log

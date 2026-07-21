@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    image: scribble-frontend:latest
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_WS_URL: ws://backend:8080
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./apps/game-engine
+      dockerfile: Dockerfile
+    image: scribble-engine:latest
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
